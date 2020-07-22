@@ -37,7 +37,8 @@ const mainMenuTemplate = [
         label: 'Clear timer'
       },
       {
-        label: 'Quit',
+				label: 'Quit',
+				accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
         click() {
           app.quit();
         }
