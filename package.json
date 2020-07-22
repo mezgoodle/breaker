@@ -1,0 +1,33 @@
+{
+  "name": "breaker",
+  "version": "0.1.0",
+  "description": "Application on Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "lint": "eslint ./",
+    "lint:fix": "eslint ./ --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mezgoodle/breaker.git"
+  },
+  "keywords": [
+    "nodejs",
+    "electron",
+    "timer"
+  ],
+  "author": "Maxim Zavalniuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mezgoodle/breaker/issues"
+  },
+  "homepage": "https://github.com/mezgoodle/breaker#readme",
+  "devDependencies": {
+    "eslint": "^7.5.0"
+  },
+  "dependencies": {
+    "electron": "^9.1.1"
+  }
+}
