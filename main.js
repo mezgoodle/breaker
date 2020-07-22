@@ -12,6 +12,53 @@ process.env.NODE_ENV = 'dev'; // production
 let mainWindow;
 let createWindow;
 
+// Handle create timer window
+const createTimerWindow = () => {
+  // Create new window
+  createWindow = new BrowserWindow({
+    width: 300,
+    height: 200,
+    title: 'Create timer',
+    webPreferences: {
+      nodeIntegration: true,
+    }
+  });
+  // Load html into window
+  createWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'createWindow.html'),
+    protocol: 'file',
+    slashes: true,
+  }));
+};
+
+// Create menu template
+const mainMenuTemplate = [
+  {
+    label: 'Timer',
+    submenu: [
+      {
+        label: 'Restart timer',
+        click() {
+          createTimerWindow();
+        }
+      },
+      {
+        label: 'Clear timer',
+        click() {
+          mainWindow.webContents.send('timer:clear');
+        }
+      },
+      {
+        label: 'Quit',
+        accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q',
+        click() {
+          app.quit();
+        }
+      },
+    ]
+  }
+];
+
 // Listen for app to be ready
 app.on('ready', () => {
   // Create new window
@@ -37,58 +84,11 @@ app.on('ready', () => {
   Menu.setApplicationMenu(mainMenu);
 });
 
-// Handle create timer window
-const createTimerWindow = () => {
-  // Create new window
-  createWindow = new BrowserWindow({
-    width: 300,
-    height: 200,
-    title: 'Create timer',
-    webPreferences: {
-      nodeIntegration: true,
-    }
-  });
-  // Load html into window
-  createWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'createWindow.html'),
-    protocol: 'file',
-    slashes: true,
-  }));
-};
-
 // Catch timer:add
 ipcMain.on('timer:add', (e, minutes) => {
   mainWindow.webContents.send('minutes:add', minutes);
   createWindow.close();
 });
-
-// Create menu template
-const mainMenuTemplate = [
-  {
-    label: 'Timer',
-    submenu: [
-      {
-        label: 'Restart timer',
-        click() {
-          createTimerWindow();
-        }
-      },
-      {
-				label: 'Clear timer',
-				click(){
-					mainWindow.webContents.send('timer:clear');
-				}
-      },
-      {
-        label: 'Quit',
-        accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q',
-        click() {
-          app.quit();
-        }
-      },
-    ]
-  }
-];
 
 // If mac, add empty object to menu
 if (process.platform === 'darwin') {
