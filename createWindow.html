@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
-    <form>
-        <div>
-            <label for="minutes">Enter the minutes</label>
-            <input type="number" id="minutes" autofocus>
-        </div>
-        <button type="submit">Create timer</button>
-    </form>
+    <div class="container">
+        <form>
+            <div>
+                <label for="minutes">Enter the minutes</label>
+                <input type="number" id="minutes" autofocus>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit">Create timer</button>
+        </form>
+    </div>
     <script>
 			const electron = require('electron')
 			const {ipcRenderer} = electron;

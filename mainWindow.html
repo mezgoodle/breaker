@@ -22,10 +22,12 @@
         const electron = require('electron');
         const {ipcRenderer} = electron;
 
+        // Constants
         let minutesCountdown = 1;
         let x = undefined;
         let sound = false;
         const audio = new Audio('./sound.mp3');
+        
         // Set the date we're counting down to
         let countDownDate = new Date().getTime();
 
