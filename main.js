@@ -12,7 +12,11 @@ let createWindow;
 // Listen for app to be ready
 app.on('ready', () => {
   // Create new window
-  mainWindow = new BrowserWindow({});
+  mainWindow = new BrowserWindow({
+		webPreferences: {
+			nodeIntegration: true,
+		}
+	});
   // Load html into window
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'mainWindow.html'),
@@ -36,7 +40,10 @@ const createTimerWindow = () => {
   createWindow = new BrowserWindow({
     width: 300,
     height: 200,
-    title: 'Create timer',
+		title: 'Create timer',
+		webPreferences: {
+			nodeIntegration: true,
+		}
   });
   // Load html into window
   createWindow.loadURL(url.format({
