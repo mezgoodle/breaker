@@ -26,6 +26,8 @@
         let minutesCountdown = 45;
         let x = undefined;
         let sound = false;
+        let paused = false;
+        let left = 0;
         const audio = new Audio('./sound.mp3');
         
         // Set the date we're counting down to
@@ -34,6 +36,8 @@
         // Catch minutes
         ipcRenderer.on('minutes:add', (e, minutes) => {
           minutesCountdown = parseInt(minutes);
+          left = 0;
+          paused = false;
           clear(x, 'UPDATED');
           if (sound) {
             audio.pause();
@@ -43,11 +47,28 @@
           x = setInterval(callback, 1000);
         });
 
-        // Catch minutes
+        // Catch clear timer
         ipcRenderer.on('timer:clear', () => {
           clear(x, 'CLEARED');
+          left = 0;
+          paused = false;
           if (sound) {
             audio.pause();
+          }
+        });
+
+        // Catch pause timer
+        ipcRenderer.on('timer:pause', () => {
+          if (paused) {
+            clear(x, 'CONTINUED');
+            countDownDate = new Date().getTime() + left;
+            x = setInterval(callback, 1000);
+            paused = !paused;
+          } else {
+            clear(x, 'PAUSED');
+            const now = new Date().getTime();
+            left = countDownDate - now;
+            paused = !paused;
           }
         });
 

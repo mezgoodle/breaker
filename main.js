@@ -7,7 +7,7 @@ const path = require('path');
 const { app, BrowserWindow, Menu, ipcMain } = electron;
 
 // SET ENV
-process.env.NODE_ENV = 'dev'; // production
+process.env.NODE_ENV = 'production'; // dev
 
 let mainWindow;
 let createWindow;
@@ -46,6 +46,12 @@ const mainMenuTemplate = [
         label: 'Clear timer',
         click() {
           mainWindow.webContents.send('timer:clear');
+        }
+      },
+      {
+        label: 'Pause/Play timer',
+        click() {
+          mainWindow.webContents.send('timer:pause');
         }
       },
       {
