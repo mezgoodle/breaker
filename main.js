@@ -18,7 +18,11 @@ app.on('ready', () => {
     pathname: path.join(__dirname, 'mainWindow.html'),
     protocol: 'file',
     slashes: true,
-  }));
+	}));
+	// Quit app when closed
+	mainWindow.on('closed', () => {
+		app.quit();
+	});
 
   // Build menu from template
   const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
