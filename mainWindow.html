@@ -34,7 +34,7 @@
         // Catch minutes
         ipcRenderer.on('minutes:add', (e, minutes) => {
           minutesCountdown = parseInt(minutes);
-          clear(x);
+          clear(x, 'UPDATED');
           if (sound) {
             audio.pause();
           }
@@ -45,7 +45,7 @@
 
         // Catch minutes
         ipcRenderer.on('timer:clear', () => {
-          clear(x);
+          clear(x, 'CLEARED');
           if (sound) {
             audio.pause();
           }
@@ -72,7 +72,7 @@
             
           // If the count down is over, write some text 
           if (distance < 0) {
-            clear(x);
+            clear(x, 'EXPIRED');
             audio.play();
             sound = true;
           }
@@ -81,9 +81,9 @@
         // Update the count down every 1 second
         x = setInterval(callback, 1000);
 
-        const clear = (x) => {
+        const clear = (x, text) => {
           clearInterval(x);
-          document.getElementById("timer").innerHTML = "EXPIRED";
+          document.getElementById("timer").innerHTML = text;
         }
     </script>
 </body>
