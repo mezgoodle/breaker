@@ -105,3 +105,6 @@ dist
 
 # MP3 files
 *.mp3
+
+# Releas builds
+/release-builds

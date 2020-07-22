@@ -6,7 +6,10 @@
   "scripts": {
     "start": "electron .",
     "lint:fix": "eslint ./ --fix",
-    "test": "eslint ./"
+    "test": "eslint ./",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Breaker he\"",    
+    "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,8 @@
   },
   "homepage": "https://github.com/mezgoodle/breaker#readme",
   "devDependencies": {
+    "electron": "^9.1.1",
+    "electron-packager": "^15.0.0",
     "eslint": "^7.5.0"
   },
   "dependencies": {
