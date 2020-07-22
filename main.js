@@ -4,7 +4,7 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 
-const { app, BrowserWindow, Menu } = electron;
+const { app, BrowserWindow, Menu, ipcMain } = electron;
 
 let mainWindow;
 let createWindow;
@@ -13,10 +13,10 @@ let createWindow;
 app.on('ready', () => {
   // Create new window
   mainWindow = new BrowserWindow({
-		webPreferences: {
-			nodeIntegration: true,
-		}
-	});
+    webPreferences: {
+      nodeIntegration: true,
+    }
+  });
   // Load html into window
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'mainWindow.html'),
@@ -40,10 +40,10 @@ const createTimerWindow = () => {
   createWindow = new BrowserWindow({
     width: 300,
     height: 200,
-		title: 'Create timer',
-		webPreferences: {
-			nodeIntegration: true,
-		}
+    title: 'Create timer',
+    webPreferences: {
+      nodeIntegration: true,
+    }
   });
   // Load html into window
   createWindow.loadURL(url.format({
@@ -52,6 +52,13 @@ const createTimerWindow = () => {
     slashes: true,
   }));
 };
+
+// Catch timer:add
+ipcMain.on('timer:add', (e, minutes) => {
+  console.log(minutes);
+  mainWindow.webContents.send('minutes:add', minutes);
+  createWindow.close();
+});
 
 // Create menu template
 const mainMenuTemplate = [

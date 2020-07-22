@@ -18,7 +18,8 @@
 
 			const submitForm = (e) => {
 				e.preventDefault();
-				console.log(123);
+				const minutes = document.querySelector('#minutes').value;
+				ipcRenderer.send('timer:add', minutes);
 			};
 
 			const form = document.querySelector('form');
