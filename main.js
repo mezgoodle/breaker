@@ -62,7 +62,7 @@ ipcMain.on('timer:add', (e, minutes) => {
 // Create menu template
 const mainMenuTemplate = [
   {
-    label: 'File',
+    label: 'Timer',
     submenu: [
       {
         label: 'Restart timer',
