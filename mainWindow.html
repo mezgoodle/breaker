@@ -12,14 +12,33 @@
     </style>
 </head>
 <body>
-    <p id="demo"></p>
+    <p id="timer"></p>
     <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        let minutesCountdown = 1;
+        let x = undefined;
         // Set the date we're counting down to
-        let countDownDate = new Date("July 22, 2020 10:08:25").getTime();
-        
-        // Update the count down every 1 second
-        let x = setInterval(function() {
-        
+        let countDownDate = new Date().getTime();
+
+        // Catch minutes
+        ipcRenderer.on('minutes:add', (e, minutes) => {
+          minutesCountdown = parseInt(minutes);
+          clear(x);
+          countDownDate = new Date().getTime();
+          countDownDate += minutesCountdown * 1000 * 60;
+          x = setInterval(callback, 1000);
+        });
+
+        // Catch minutes
+        ipcRenderer.on('timer:clear', () => {
+          clear(x);
+        });
+
+        countDownDate += minutesCountdown * 1000 * 60;
+
+        const callback = () => {
           // Get today's date and time
           let now = new Date().getTime();
             
@@ -33,15 +52,24 @@
           let seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
           // Output the result in an element with id="demo"
-          document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+          document.getElementById("timer").innerHTML = days + "d " + hours + "h "
           + minutes + "m " + seconds + "s ";
             
           // If the count down is over, write some text 
           if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            clear(x);
+            const audio = new Audio('./sound.mp3');
+            audio.play();
           }
-        }, 1000);
+        };
+        
+        // Update the count down every 1 second
+        x = setInterval(callback, 1000);
+
+        const clear = (x) => {
+          clearInterval(x);
+          document.getElementById("timer").innerHTML = "EXPIRED";
+        }
     </script>
 </body>
 </html>

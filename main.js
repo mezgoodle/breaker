@@ -55,7 +55,6 @@ const createTimerWindow = () => {
 
 // Catch timer:add
 ipcMain.on('timer:add', (e, minutes) => {
-  console.log(minutes);
   mainWindow.webContents.send('minutes:add', minutes);
   createWindow.close();
 });
@@ -72,7 +71,10 @@ const mainMenuTemplate = [
         }
       },
       {
-        label: 'Clear timer'
+				label: 'Clear timer',
+				click(){
+					mainWindow.webContents.send('timer:clear');
+				}
       },
       {
         label: 'Quit',
