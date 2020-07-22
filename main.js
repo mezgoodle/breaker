@@ -18,11 +18,11 @@ app.on('ready', () => {
     pathname: path.join(__dirname, 'mainWindow.html'),
     protocol: 'file',
     slashes: true,
-	}));
-	// Quit app when closed
-	mainWindow.on('closed', () => {
-		app.quit();
-	});
+  }));
+  // Quit app when closed
+  mainWindow.on('closed', () => {
+    app.quit();
+  });
 
   // Build menu from template
   const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
@@ -70,3 +70,8 @@ const mainMenuTemplate = [
     ]
   }
 ];
+
+// If mac, add empty object to menu
+if (process.platform === 'darwin') {
+  mainMenuTemplate.unshift({});
+}
