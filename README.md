@@ -1,10 +1,8 @@
-
-
 # breaker
 
 [![Language](https://img.shields.io/badge/language-javascript-brightgreen?style=flat-square)](https://nodejs.org/uk/)
 
-Breaker looks on your work time and alarms you to do a break. Built with Electron.
+Breaker looks on your work time and alarms you to do a break. Built with Electron. [Download](https://github.com/mezgoodle/breaker/releases/download/v0.2.0/breaker.exe) this application.
 
 ## Table of contents
 
