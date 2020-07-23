@@ -8,7 +8,19 @@ Breaker looks on your work time and alarms you to do a break. Built with Electro
 
 ## Table of contents
 
-
+- [Table of contents](#table-of-contents)
+- [Motivation](#motivation)
+- [Build status](#build-status)
+- [Badges](#badges)
+- [Code style](#code-style)
+- [Screenshots](#screenshots)
+- [Tech/framework used](#techframework-used)
+- [Features](#features)
+- [Code Example](#code-example)
+- [Installation and usage](#installation-and-usage)
+- [Contribute](#contribute)
+- [Credits](#credits)
+- [License](#license)
 
 ## Motivation
 
