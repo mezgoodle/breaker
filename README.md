@@ -4,6 +4,8 @@
 
 Breaker looks on your work time and alarms you to do a break. Built with Electron. Unzip this [archive](https://github.com/mezgoodle/breaker/releases/download/v0.2.0/breaker-win32-ia32.zip) and launch `breaker.exe`.
 
+> This release is for Windows. If you have an another platform, please clone the repository and build via `package.json`.
+
 ## Table of contents
 
 - [Table of contents](#table-of-contents)
