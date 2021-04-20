@@ -31,6 +31,6 @@
     "eslint": "^7.5.0"
   },
   "dependencies": {
-    "electron": "^9.1.1"
+    "electron": "^9.4.0"
   }
 }
