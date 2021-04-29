@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/mezgoodle/breaker#readme",
   "devDependencies": {
-    "electron-packager": "^15.0.0",
+    "electron-packager": "^15.2.0",
     "eslint": "^7.5.0"
   },
   "dependencies": {
